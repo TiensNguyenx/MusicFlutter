@@ -14,9 +14,10 @@ class MyApp extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _MyAppState extends State<MyApp> with TickerProviderStateMixin {
   List<Music> musicList = MusicOperations.getMusic();
   AudioPlayer _audioPlayer = new AudioPlayer();
+
   Duration duration = Duration.zero;
   Duration position = Duration.zero;
   String formatTime(int seconds) {
@@ -55,10 +56,12 @@ class _MyAppState extends State<MyApp> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Container(
-                    width: 130,
-                    height: 50,
-                    child: Image.network(music.image, fit: BoxFit.cover)),
+                ClipOval(
+                  child: Container(
+                      width: 80,
+                      height: 80,
+                      child: Image.network(music.image, fit: BoxFit.cover)),
+                ),
                 Container(
                   padding: EdgeInsets.only(left: 10),
                   width: 150,
@@ -120,15 +123,15 @@ class _MyAppState extends State<MyApp> {
 
             SliderTheme(
               data: SliderTheme.of(context).copyWith(
-              activeTrackColor: Colors.white,
-              inactiveTrackColor: Colors.white,
-              trackShape: RectangularSliderTrackShape(),
-              trackHeight: 4.0,
-              thumbColor: Colors.white,
-              thumbShape: RoundSliderThumbShape(enabledThumbRadius: 8.0),
-              overlayColor: Colors.red.withAlpha(32),
-              overlayShape: RoundSliderOverlayShape(overlayRadius: 28.0),
-            ),
+                activeTrackColor: Colors.white,
+                inactiveTrackColor: Colors.white,
+                trackShape: RectangularSliderTrackShape(),
+                trackHeight: 4.0,
+                thumbColor: Colors.white,
+                thumbShape: RoundSliderThumbShape(enabledThumbRadius: 8.0),
+                overlayColor: Colors.red.withAlpha(32),
+                overlayShape: RoundSliderOverlayShape(overlayRadius: 28.0),
+              ),
               child: Container(
                 child: Slider(
 
@@ -156,14 +159,15 @@ class _MyAppState extends State<MyApp> {
       ),
     );
   }
-@override
-void dispose(){
+  @override
+  void dispose(){
     _audioPlayer.dispose();
     super.dispose();
-}
+  }
   @override
   initState() {
     super.initState();
+
     _audioPlayer.onPlayerStateChanged.listen((state) {
       setState(() {
         isPlaying = state == PlayerState.playing;
@@ -191,6 +195,28 @@ void dispose(){
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        backgroundColor: Colors.blueGrey.shade400,
+        child: ListView(
+          children: [
+            ListTile(
+              title: Text('User'),textColor: Colors.black,
+              leading: Icon(
+                Icons.account_circle,
+              ),
+              onTap: (){},
+            ),
+            ListTile(
+              title: Text('Log out'),
+              leading: Icon(
+                Icons.logout,
+              ),
+
+              onTap: (){},
+            )
+          ],
+        ),
+      ),
       body: Tabs[currentTabIndex],
       backgroundColor: Colors.black,
       bottomNavigationBar: Column(

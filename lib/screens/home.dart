@@ -107,10 +107,7 @@ class Home extends StatelessWidget {
       backgroundColor: Colors.transparent,
       elevation: 0.0,
       title: Text(message),
-      actions: [
-        Padding(
-            padding: EdgeInsets.only(right: 10), child: Icon(Icons.logout))
-      ],
+      
     );
   }
 
