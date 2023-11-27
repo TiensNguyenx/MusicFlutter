@@ -18,7 +18,7 @@ class Home extends StatelessWidget {
               padding: const EdgeInsets.only(left: 10),
               child: Text(
                 category.name,
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
               ),
             )
           ],
@@ -51,11 +51,14 @@ class Home extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
               )),
-          Text(
-            music.name,
-            style: TextStyle(color: Colors.white),
+          Padding(
+            padding: const EdgeInsets.only(top: 10.0),
+            child: Text(
+              music.name,
+              style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
+            ),
           ),
-          Text(music.desc, style: TextStyle(color: Colors.white))
+          Text(music.desc, style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold))
         ],
       ),
     );
@@ -107,7 +110,7 @@ class Home extends StatelessWidget {
       backgroundColor: Colors.transparent,
       elevation: 0.0,
       title: Text(message),
-      
+
     );
   }
 

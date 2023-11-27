@@ -64,10 +64,23 @@ class _MyAppState extends State<MyApp> with TickerProviderStateMixin {
                 ),
                 Container(
                   padding: EdgeInsets.only(left: 10),
-                  width: 150,
-                  child: Text(
-                    music.name,
-                    style: TextStyle(color: Colors.white, fontSize: 15),
+                  width: 180,
+                  child: Column(
+
+                    children: [
+                      Center(
+                        child: Text(
+                          music.name,
+                          style: TextStyle(color: Colors.white, fontSize: 15,fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis),
+                        ),
+                      ),
+                      Center(
+                        child: Text(
+                          music.desc,
+                          style: TextStyle(color: Colors.white, fontSize: 15,fontWeight: FontWeight.bold),),
+                      )
+
+                    ],
                   ),
                 ),
                 IconButton(
