@@ -67,28 +67,35 @@ class _SearchState extends State<Search> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.black,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.black,
         title: Text(
           'Search',
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: Colors.white),
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 10.0),
+        padding: const EdgeInsets.only(top: 10),
         child: Column(
           children: [
-            TextField(
-              onChanged: (value) => _runFilter(value),
-              decoration: InputDecoration(
-                  hintText: 'Search',
-                  suffixIcon: Icon(Icons.search),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                      borderSide: BorderSide())),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 20.0),
+              child: TextField(
+
+                onChanged: (value) => _runFilter(value),
+                decoration: InputDecoration(
+                  filled: true,
+                    fillColor: Colors.white,
+                    hintText: 'Search',
+                    suffixIcon: Icon(Icons.search),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                        borderSide: BorderSide())),
+              ),
             ),
             Container(
+
               child: Expanded(
                 child: ListView.builder(
                   itemCount: _foundMusic.length,
@@ -96,16 +103,17 @@ class _SearchState extends State<Search> {
                     elevation: 1,
                     margin: const EdgeInsets.symmetric(vertical: 2),
                     child: ListTile(
+                       tileColor:Colors.black,
                       leading: CircleAvatar(
                         radius: 30.0,
                         backgroundImage: NetworkImage(_foundMusic[index].image),
-                        backgroundColor: Colors.transparent,
+                        // backgroundColor: Colors.transparent,
                       ),
-                      title: Text(_foundMusic[index].name),
-                      subtitle: Text('${_foundMusic[index].desc}'),
+                      title: Text(_foundMusic[index].name,style: TextStyle(color: Colors.white),),
+                      subtitle: Text('${_foundMusic[index].desc}',style: TextStyle(color: Colors.white)),
                       onTap: () => _playPause(_foundMusic[index].audioURL,_foundMusic[index]),
                       trailing: IconButton(
-                        icon: Icon(_foundMusic[index].isPlaying  ? Icons.pause : Icons.play_arrow),
+                        icon: Icon(_foundMusic[index].isPlaying  ? Icons.pause : Icons.play_arrow),color: Colors.white,
                         onPressed: () {
                           _playPause(_foundMusic[index].audioURL,_foundMusic[index]);
                         },
