@@ -83,6 +83,25 @@ class _MyAppState extends State<MyApp> with TickerProviderStateMixin {
                     ],
                   ),
                 ),
+
+
+                IconButton(
+                  onPressed: () async {
+                    await _audioPlayer
+                        .play(UrlSource(musicList[currentSong - 1].audioURL));
+                    currentSong--;
+                    if (currentSong < 0) {
+                      currentSong = 0;
+                    }
+                    setState(() {
+                      this.music = musicList[currentSong];
+                    });
+                  },
+                  icon: Icon(
+                    Icons.skip_previous_rounded,
+                    color: Colors.white,
+                  ),
+                ),
                 IconButton(
                     onPressed: () async {
                       isPlaying = !isPlaying;
@@ -110,23 +129,6 @@ class _MyAppState extends State<MyApp> with TickerProviderStateMixin {
                   },
                   icon: Icon(
                     Icons.skip_next_rounded,
-                    color: Colors.white,
-                  ),
-                ),
-                IconButton(
-                  onPressed: () async {
-                    await _audioPlayer
-                        .play(UrlSource(musicList[currentSong - 1].audioURL));
-                    currentSong--;
-                    if (currentSong < 0) {
-                      currentSong = 0;
-                    }
-                    setState(() {
-                      this.music = musicList[currentSong];
-                    });
-                  },
-                  icon: Icon(
-                    Icons.skip_previous_rounded,
                     color: Colors.white,
                   ),
                 ),

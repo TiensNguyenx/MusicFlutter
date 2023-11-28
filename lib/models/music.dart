@@ -3,5 +3,6 @@ class Music {
   String image;
   String desc;
   String audioURL;
-  Music(this.name, this.image, this.desc,this.audioURL);
+  bool isPlaying;
+  Music(this.name, this.image, this.desc,this.audioURL,this.isPlaying);
 }
